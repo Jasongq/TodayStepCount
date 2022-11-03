@@ -166,15 +166,13 @@ public class TodayStepService extends Service implements Handler.Callback {
     @Override
     public void onCreate() {
         super.onCreate();
-
         mTodayStepDBHelper = TodayStepDBHelper.factory(getApplicationContext());
-
         mSensorManager = (SensorManager) this.getSystemService(SENSOR_SERVICE);
 
-        initNotification(CURRENT_STEP);
+        // Todo 不使用状态栏服务
+        // initNotification(CURRENT_STEP);
 
         getSensorRate();
-
 //        JLogger.i(TAG, "onCreate currStep :" + CURRENT_STEP);
         Map<String, String> map = getLogMap();
         map.put("current_step", String.valueOf(CURRENT_STEP));
@@ -329,8 +327,7 @@ public class TodayStepService extends Service implements Handler.Callback {
             return;
         }
         //没有计步器的时候开启定时器保存数据
-        Sensor sensor = mSensorManager
-                .getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        Sensor sensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         if (null == sensor) {
             return;
         }
