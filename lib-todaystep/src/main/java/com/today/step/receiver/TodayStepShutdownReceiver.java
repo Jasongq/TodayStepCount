@@ -19,7 +19,7 @@ public class TodayStepShutdownReceiver  extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        if (null!=intent && intent.getAction().equals(Intent.ACTION_SHUTDOWN)) {
+        if (null != context && null != intent && intent.getAction().equals(Intent.ACTION_SHUTDOWN)) {
             PreferencesHelper.setShutdown(context,true);
         }
     }
